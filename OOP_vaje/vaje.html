@@ -1,0 +1,75 @@
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <title>Vaje</title>
+</head>
+
+<body>
+    <h3 id="za-vse-vaje">0. Za vse vaje</h3>
+    <ul>
+    <li>Dodaj potrebno dokumentacijo (docstring,...)</li>
+    <li>Uporabi type hinting</li>
+    <li>Upoštevaj PEP8</li>
+    </ul>
+    <h3 id="implementirtaj-class-circle-ki-predstavlja-krog">1. Implementirtaj <code>class Circle</code>, ki predstavlja krog</h3>
+    <p>Naj ima dve metodi (poleg ostalih potrebnih): - <code>area()</code> -&gt; vrne povrsino kroga - <code>circumference()</code> -&gt; vrne obseg kroga</p>
+    <p>Uporaba:</p>
+    <pre class="sourceCode python"><code class="sourceCode python">c = Circle(r=<span class="dv">10</span>)
+    c.area()
+    c.circumference()</code></pre>
+    <p>Namigi:</p>
+    <pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> math <span class="ch">import</span> pi</code></pre>
+    <h3 id="implementiraj-class-player-ki-predstavlja-igričarski-karakter-in-podpira-nekaj-akcij">2. Implementiraj <code>class Player</code>, ki predstavlja igričarski karakter in podpira nekaj akcij</h3>
+    <p>Class naj ima sledeči metode (poleg ostalih potrebnih): - <code>attack(player_obj)</code> -&gt; če player_obj ni isti igralec, izvedi napad (napadenemu igralcu se naj spremeni health za vrednost napada) - <code>is_alive()</code> -&gt; je igralec še živ?</p>
+    <p>health - zdravje karakterja</p>
+    <p>attack - maximalen možni napad (ko karakter napade povzroči med 0 in attack škode)</p>
+    <p>Uporaba:</p>
+    <pre class="sourceCode python"><code class="sourceCode python">player_1 = Player(name=<span class="st">&quot;Steve&quot;</span>, health=<span class="dv">100</span>, attack=<span class="dv">10</span>)
+    player_2 = Player(name=<span class="st">&quot;Jebediah&quot;</span>, health=<span class="dv">100</span>, attack=<span class="dv">5</span>)
+
+    <span class="co"># Izvedi napad</span>
+    player_1.do_attack(player_2)
+    <span class="dt">print</span>(player_1)
+    <span class="dt">print</span>(player_2)
+
+    player_2.do_attack(player_1)
+    <span class="dt">print</span>(player_1)
+    <span class="dt">print</span>(player_2)
+
+    <span class="co"># Je igralec še živ?</span>
+    <span class="dt">print</span>(player_1.is_alive())
+    <span class="dt">print</span>(player_2.is_alive())</code></pre>
+    <h3 id="implementiraj-class-localize-ki-zna-glede-na-parameter-pravilno-pretvarjati-dolžine">3. Implementiraj <code>class Localize</code>, ki zna glede na parameter pravilno pretvarjati dolžine</h3>
+    <p>Class naj ima sledečo metodo (poleg ostalih potrebnih): - loc(&quot;location&quot;) -&gt; vrne podatek v pravilnih enotah glede na lokacijo</p>
+    <p>Uporaba:</p>
+    <pre class="sourceCode python"><code class="sourceCode python">height = Localize(<span class="dv">2</span>, <span class="st">&quot;m&quot;</span>)  <span class="co"># podpiramo samo metre (m) in feete (ft)</span>
+
+    <span class="dt">print</span>(height.loc(<span class="st">&quot;SLO&quot;</span>))  <span class="co"># izpiše podatek v metrih </span>
+    <span class="dt">print</span>(height.loc(<span class="st">&quot;GB&quot;</span>))  <span class="co"># izpiše podatek v feetih</span></code></pre>
+    <h3 id="implementiraj-class-loan-posojilo">4. Implementiraj <code>class Loan</code> (posojilo)</h3>
+    <p>Pri inicializaciji naj sprejme vsoto posojila in dobo odplačevanja v mesecih (obresti ni).</p>
+    <p>Class naj ima sledečo metodo (poleg ostalih potrebnih): - <code>owed_amount(&lt;month_num&gt;)</code> -&gt; vrne koliko smo še dolžni. - Brez parametra - celoten znesek - S parametrom - znesek ki ostane če odplačujemo že toliko mesecev</p>
+    <p>Uporaba:</p>
+    <pre class="sourceCode python"><code class="sourceCode python">kredit = Loan(<span class="dv">100000</span>, <span class="dv">120</span>)
+    <span class="dt">print</span>(kredit.owed_amount())     <span class="co"># Izpiše celoten znesek kredita</span>
+    <span class="dt">print</span>(kredit.owed_amount(<span class="dv">100</span>))  <span class="co"># Izpiše znesek, ki nam ostane če odplačujemo 100 mesecev</span></code></pre>
+    <h3 id="z-uporabo-dedovanja-implementiraj-igračarski-karakter">5. Z uporabo dedovanja implementiraj igračarski karakter</h3>
+    <p>Ta class podpira poseben napad, ki pa ga lahko izvede le če je od prejšnjega minilo vsaj 10s, poseben napadal lahko povzroči naključno škode med <code>attack</code> in <code>special_attack</code> vrednostjo.</p>
+    <p>Class naj ima sledečo metodo (poleg ostalih potrebnih in dedovanih): - <code>do_special_attack(player_obj)</code></p>
+    <pre class="sourceCode python"><code class="sourceCode python">player_3 = SpecialPlayer(name=<span class="st">&quot;Kratos&quot;</span>, health=<span class="dv">100</span>, attack=<span class="dv">10</span>, special_attack=<span class="dv">15</span>)
+    player_4 = Player(name=<span class="st">&quot;Master Chief&quot;</span>, health=<span class="dv">100</span>, attack=<span class="dv">10</span>)
+
+    player_3.do_attack(player_4)
+    player_3.do_special_attack(player_4)
+    time.sleep(<span class="dv">2</span>)
+    player_3.do_special_attack(player_4) <span class="co"># ne naredi nobene škode</span>
+    time.sleep(<span class="dv">8</span>)
+    player_3.do_special_attack(player_4)  <span class="co"># naredi škodo</span></code></pre>
+    <p>special_attack - maximalen možni napad s to vrsto napada</p>
+    <p>Namigi:</p>
+    <pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> time
+    time.time()
+    time.sleep(x)</code></pre>
+
+</body>
+</html>
