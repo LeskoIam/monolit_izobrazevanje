@@ -46,7 +46,7 @@ class SpecialPlayer(Player):
 
     def __init__(self, name: str, health: int, attack: int, special_attack: int):
         self.special_attack = special_attack
-        self.__last_attack_time = None
+        self.__last_attack_time = 0
         super(SpecialPlayer, self).__init__(name, health, attack)
 
     def do_special_attack(self, other_player):
@@ -55,7 +55,6 @@ class SpecialPlayer(Player):
             self.__last_attack_time = time.time()
         else:
             raise Exception("not enough time between attacks")
-
 
 
 if __name__ == '__main__':
@@ -67,7 +66,7 @@ if __name__ == '__main__':
     print(player_1)
     print(player_2)
 
-    player_1.do_attack(player_1)
+    # player_1.do_attack(player_1)
 
     player_2.do_attack(player_1)
     print(player_1)
@@ -76,3 +75,10 @@ if __name__ == '__main__':
     # Je igralec še živ?
     print(player_1.is_alive())
     print(player_2.is_alive())
+
+    sp = SpecialPlayer("test", 100, 12, 89)
+
+    # print(sp.__last_attack_time)
+    print(sp.__dict__)
+    sp.do_special_attack(player_1)
+    print(sp._SpecialPlayer__last_attack_time)
